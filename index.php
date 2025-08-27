@@ -14,7 +14,7 @@
             <input type="number" name="num3" placeholder="Exam Score (40%)" required> <!--sya mag rerequired na mag input ng value-->
             <button type="submit">Calculate</button> <!--eto naman ung pipindutin na button para mag compute na-->
         </form>
-        
+
         <?php
             if ($_POST) {
                 $num1 = $_POST['num1']; // <--- Dito naiistore ung ininput na value ng quiz
@@ -52,4 +52,4 @@
         ?>
     </div>
 </body>
-</html>
+</html>    
