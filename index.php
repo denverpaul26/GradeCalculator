@@ -63,7 +63,7 @@
                 if ($error) {
                     echo "<p class='result' style='color: red;'>$error</p>";
                 } else {
-                    echo "<p class='result'>Result: $num1 $operation $num2 = $result</p>";
+                    echo "<p class='result'>Result: $num1 $operation $num2 $operation $num3 = $result</p>";
                 }
             }
         ?>
