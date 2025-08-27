@@ -14,48 +14,39 @@
     
     <div class="calculator">
         <form method="POST">
-            <input type="number" name="Quiz" placeholder="Quiz" required>
+            <input type="number" name="num1" placeholder="First number" required>
             <select name="operation">
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">×</option>
                 <option value="/">÷</option>
             </select>
-            <input type="number" name="Assignment" placeholder="Assignment" required>
-            <select name="operation">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">×</option>
-                <option value="/">÷</option>
-            </select>
-            <input type="number" name="Exam" placeholder="Exam" required>
+            <input type="number" name="num2" placeholder="Second number" required>
             <button type="submit">Calculate</button>
         </form>
         
         <?php
             if ($_POST) {
-                $Quiz = $_POST['Quiz'];
-                $Assignment = $_POST['Assignment'];
-                $Exam = $_POST['Exam'];
+                $num1 = $_POST['num1'];
+                $num2 = $_POST['num2'];
                 $operation = $_POST['operation'];
                 $result = 0;
                 $error = "";
                 
                 switch ($operation) {
                     case '+':
-                        $result = ($Quiz * 0.3) + ($Assignment * 0.3) + ($Exam * 0.4);
+                        $result = $num1 + $num2;
                         break;
                     case '-':
-                        $result = ($Quiz * 0.3) - ($Assignment * 0.3) - ($Exam * 0.4) ;
+                        $result = $num1 - $num2;
                         break;
                     case '*':
-                        $result = ($Quiz * 0.3) * ($Assignment * 0.3) * ($Exam * 0.4);
+                        $result = $num1 * $num2;
                         break;
                     case '/':
-                        if ($Assignment != 0 && $Exam != 0) {
-                            $result = ($Quiz * 0.3) / ($Assignment * 0.3) / ($Exam * 0.4);
-                        } 
-                        else {
+                        if ($num2 != 0) {
+                            $result = $num1 / $num2;
+                        } else {
                             $error = "Cannot divide by zero!";
                         }
                         break;
@@ -64,7 +55,7 @@
                 if ($error) {
                     echo "<p class='result' style='color: red;'>$error</p>";
                 } else {
-                    echo "<p class='result'>Result: $Quiz $operation $Assignment $operation $Exam = $result</p>";
+                    echo "<p class='result'>Result: $num1 $operation $num2 = $result</p>";
                 }
             }
         ?>
