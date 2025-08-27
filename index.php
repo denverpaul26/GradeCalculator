@@ -28,7 +28,7 @@
                 <option value="*">×</option>
                 <option value="/">÷</option>
             </select>
-            <input type="number" name="num2" placeholder="Exam Score" required>
+            <input type="number" name="num3" placeholder="Exam Score" required>
             <button type="submit">Calculate</button>
         </form>
         
