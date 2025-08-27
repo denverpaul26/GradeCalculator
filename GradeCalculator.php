@@ -52,12 +52,9 @@
                         $result = ($Quiz * 0.3) * ($Assignment * 0.3) * ($Exam * 0.4);
                         break;
                     case '/':
-                        if ($Assignment != 0) {
-                            $result = $Quiz / $Assignment;
+                        if ($Assignment != 0 && $Exam != 0) {
+                            $result = ($Quiz * 0.3) / ($Assignment * 0.3) / ($Exam * 0.4);
                         } 
-                        else if ($Exam != 0) {
-                            $result = $Quiz / $Exam;
-                        }
                         else {
                             $error = "Cannot divide by zero!";
                         }
