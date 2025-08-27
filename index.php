@@ -2,33 +2,16 @@
 <html>
 <head>
     <title>Simple Calculator</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .calculator { border: 2px solid #ccc; padding: 20px; width: 300px; }
-        input, select, button { margin: 5px; padding: 5px; }
-        .result { font-weight: bold; color: #333; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Simple Calculator</h1>
+    <h1>Grade Calculator</h1>
     
     <div class="calculator">
         <form method="POST">
-            <input type="number" name="num1" placeholder="Quiz Score" required>
-            <select name="operation">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">×</option>
-                <option value="/">÷</option>
-            </select>
-            <input type="number" name="num2" placeholder="Assignment Score" required>
-            <select name="operation">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">×</option>
-                <option value="/">÷</option>
-            </select>
-            <input type="number" name="num3" placeholder="Exam Score" required>
+            <input type="number" name="num1" placeholder="Quiz Score (30%)" required>
+            <input type="number" name="num2" placeholder="Assignment Score (30%)" required>
+            <input type="number" name="num3" placeholder="Exam Score (40%)" required>
             <button type="submit">Calculate</button>
         </form>
         
@@ -37,33 +20,33 @@
                 $num1 = $_POST['num1'];
                 $num2 = $_POST['num2'];
                 $num3 = $_POST['num3'];
-                $operation = $_POST['operation'];
-                $result = 0;
                 $error = "";
-                
-                switch ($operation) {
-                    case '+':
-                        $result = ($num1 * 0.3) + ($num2 * 0.3) + ($num3 * 0.4);
-                        break;
-                    case '-':
-                        $result = ($num1 * 0.3) - ($num2 * 0.3) - ($num3 * 0.4);
-                        break;
-                    case '*':
-                        $result = ($num1 * 0.3) * ($num2 * 0.3) * ($num3 * 0.4);
-                        break;
-                    case '/':
-                        if ($num2 != 0 && $num3 != 0) {
-                            $result = ($num1 * 0.3) / ($num2 * 0.3) / ($num3 * 0.4);
-                        } else {
-                            $error = "Cannot divide by zero!";
-                        }
-                        break;
+                $grade = "";
+
+                // Weighted average
+                $result = ($num1 * 0.3) + ($num2 * 0.3) + ($num3 * 0.4);
+
+                if ($result >= 0 && $result <= 100) {
+                    if ($result >= 90) {
+                        $grade = "A";
+                    } elseif ($result >= 80) {
+                        $grade = "B";
+                    } elseif ($result >= 70) {
+                        $grade = "C";
+                    } elseif ($result >= 60) {
+                        $grade = "D";
+                    } else {
+                        $grade = "F";
+                    }
+                } else {
+                    $error = "Invalid scores entered.";
                 }
-                
+
                 if ($error) {
                     echo "<p class='result' style='color: red;'>$error</p>";
                 } else {
-                    echo "<p class='result'>Result: $num1 $operation $num2 $operation $num3 = $result</p>";
+                    echo "<p class='result'>Weighted Average: ($num1 * 0.3) + ($num2 * 0.3) + ($num3 * 0.4) = $result";
+                    echo "<p class='result'>Final Grade: $result Letter Grade: $grade</p>";
                 }
             }
         ?>
